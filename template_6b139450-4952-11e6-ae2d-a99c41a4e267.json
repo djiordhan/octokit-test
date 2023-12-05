@@ -1,0 +1,35 @@
+{
+    "syncTemplateRule": true,
+    "objectEventDescriptor": "Insect - PreSave",
+    "ruleSetGroup": "dexwise",
+    "ruleSetDSL": "// RuleSet: Insect - PreSave\n// Updated by: peter.dexter@formbird.com 2022-04-20 10:46:20 +10:00x\n{\n#include \"JayRule Ruleset Overlay JS\",\n#include \"SweetAlert Dialog\",\n\n\ttestF : function(ntf) {\n\t\tntf.scope.showNotification('isPoisonous: ' + ntf.document.isPoisonous);\n\t},\n\t\n\truleset : {\n\t\tname : 'Insect - PreSave',\n\t\t\n\t\tlogging : {\n\t\t\tdebugEmail : 'peter.dexter@formbird.com'\n\t\t},\n\t\t\n\t\ttimeout : 180000,\n\t\t\n\t\truleTest : {\n\t\t\truleCondition : true,\n\t\t\t\n\t\t\truleAction : function(ntf,callback) { \n\t\t\t\tvar ft3 = ntf.scope;\n\t\t\t\ttry {\n\t\t\t\t\tft3.testF(ntf);\n\t\t\t\t}\n\t\t\t\tcatch(e) {\n\t\t\t\t\talert(\"E: \" + e.message);\n\t\t\t\t}\n\t\t\t\tcallback();\n\t\t\t}\t\t\t\t\n\t\t},\n\t\t\n\t\truleStopSave : {\n\t\t\truleCondition : function(ntf) { \n\t\t\t\treturn (ntf.document.description === 'stopsave');\n\t\t\t},\n\t\t\t\n\t\t\truleAction : function(ntf) { \n\t\t\t\tntf.errorMessage = '(no-display)';\n\t\t\t}\n\t\t},\n\t\t\n\t\trule004 : {\n\t\t\truleCondition : function(ntf) {\n\t\t\t\treturn (ntf.document.species === 'dspider');\n\t\t\t},\n\t\t\t\n\t\t\truleAction : function(ntf) { \n\t\t\t\tvar ft3 = ntf.scope;\n\t\t\t\t// Convert to spider\n\t\t\t\tntf.document.systemHeader.templateId = 'c6a8eb50-c029-11e6-9eea-13b66331d97f';\n\t\t\t\t\n\t\t\t\tft3.ModalService.openModal({\n\t\t\t\t\ttitle : 'Transmogrification',\n\t\t\t\t\thtml : 'This insect has been changed to a Spider. The page will be reloaded.'\n\t\t\t\t})\n\t\t\t\t.then(\n\t\t\t\t\tfunction confirmF() {\n\t\t\t\t\t\twindow.location.reload();\n\t\t\t\t\t}\t\n\t\t\t\t)\n\t\t\t\t\n\t\t\t}\t\t\n\t\t}\n\t}\n}",
+    "vtn": "system.ruleset",
+    "appTags": [
+        "system",
+        "ruleset"
+    ],
+    "businessType": "RuleSet",
+    "systemHeader": {
+        "systemType": "document",
+        "templateId": "224bc62858d73ce57a9cb85e",
+        "createdWith": "224bc62858d73ce57a9cb85e",
+        "versionId": "8f83d910-c4ff-11ec-85a7-432bfd1e4552",
+        "keyIds": [],
+        "serverDate": "2017-04-03T23:20:08.691Z",
+        "excludeGeneralSearch": false,
+        "currentVersion": true,
+        "createdDate": "2022-04-26T01:24:04.513Z",
+        "createdBy": "5476946bb671fc07650beed1",
+        "summaryName": "Insect - PreSave",
+        "summaryDescription": "RuleSet for processing of template  (et al),  event.",
+        "serverUpdatedDate": "2022-04-26T01:24:04.927Z",
+        "serverCreatedDate": "2022-04-26T01:24:04.927Z",
+        "previousVersionId": "4c0e7340-c043-11ec-b2d8-59520678072e"
+    },
+    "documentId": "6b139450-4952-11e6-ae2d-a99c41a4e267",
+    "versionTag": "201808A",
+    "flagInPreSave": true,
+    "flagDslChanged": true,
+    "name": "Insect - PreSave",
+    "rulesetNote": "ALERT - DO NOT CHANGE THIS RULESET\nUsed for replication example in Mantis #15718"
+}
